@@ -44,7 +44,7 @@ components:
         note_id:
           type: string
 security:
-  bearerAuth: []
+  - bearerAuth: []
 paths:
   /v1/mem-it:
     post:
