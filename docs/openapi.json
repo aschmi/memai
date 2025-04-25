@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: Mem.ai Actions API
+  version: 1.0.0
+  description: |-
+    Wrapper around Mem.ai’s REST API for “Mem It” and note creation.
+servers:
+  - url: https://your-domain.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Your Mem.ai API token (set in the GPT builder’s Auth section).
+  schemas:
+    MemItRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          description: Plain-text transcript
+      required: [input]
+    MemItResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        summary:
+          type: string
+    NoteCreateRequest:
+      type: object
+      properties:
+        content:
+          type: string
+        add_to_collections:
+          type: array
+          items: { type: string }
+      required: [content]
+    NoteCreateResponse:
+      type: object
+      properties:
+        note_id:
+          type: string
+security:
+  - bearerAuth: []
+paths:
+  /v1/mem-it:
+    post:
+      summary: “Mem It endpoint”
+      operationId: memIt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MemItRequest' }
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MemItResponse' }
+  /v1/notes:
+    post:
+      summary: “Create Note”
+      operationId: createNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NoteCreateRequest' }
+      responses:
+        '201':
+          description: Note created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NoteCreateResponse' }
