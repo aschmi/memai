@@ -1,11 +1,11 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Mem.ai Actions API
   version: 1.0.0
   description: |-
     Wrapper around Mem.ai’s REST API for “Mem It” and note creation.
 servers:
-  - url: https://your-domain.com
+  - url: https://aschmi.github.io/memai/openapi.json
 components:
   securitySchemes:
     bearerAuth:
