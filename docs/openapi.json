@@ -5,7 +5,7 @@ info:
   description: |-
     Wrapper around Mem.ai’s REST API for “Mem It” and note creation.
 servers:
-  - url: https://aschmi.github.io/memai/openapi.json
+  url: https://aschmi.github.io/memai/openapi.json
 components:
   securitySchemes:
     bearerAuth:
@@ -44,7 +44,7 @@ components:
         note_id:
           type: string
 security:
-  - bearerAuth: []
+  bearerAuth: []
 paths:
   /v1/mem-it:
     post:
